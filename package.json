@@ -1,0 +1,24 @@
+{
+  "name": "browserify-file",
+  "version": "0.0.0",
+  "description": "require text files",
+  "main": "index.js",
+  "dependencies": {
+    "through": "2.3.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shtylman/browserify-file.git"
+  },
+  "keywords": [
+    "browserify",
+    "html",
+    "file"
+  ],
+  "author": "Roman Shtylman <shtylman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shtylman/browserify-file/issues"
+  }
+}
