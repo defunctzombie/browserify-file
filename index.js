@@ -1,17 +1,28 @@
-var through = require('through');
+var through = require('through2');
+var minify = require('html-minifier').minify;
 
-module.exports = function(file) {
-    if (!/\.html/.test(file)) return through();
+module.exports = function(opt) {
+    opt = opt || {};
 
-    var source = '';
-    var stream = through(
-        function write(buf) {
-            source += buf;
-        },
-        function end() {
-            this.queue('module.exports=' + JSON.stringify(source) + ';');
-            this.queue(null);
+    return function browserify_file(file) {
+        if (!/\.html/.test(file)) {
+            return through();
         }
-    );
-    return stream;
+
+        var source = '';
+        var stream = through(function(chunk, enc, cb) {
+            source += chunk.toString();
+            cb();
+        }, function(cb) {
+            if (opt.minify) {
+                source = minify(source, opt.minify);
+            }
+
+            source = source.replace(/'/g, '\\\'');
+            this.push('module.exports=\'' + source + '\';');
+            cb();
+        });
+
+        return stream;
+    };
 };

@@ -4,7 +4,8 @@
   "description": "require text files",
   "main": "index.js",
   "dependencies": {
-    "through": "2.3.4"
+    "through2": "0.6.3",
+    "html-minifier": "0.6.9"
   },
   "devDependencies": {},
   "repository": {
